@@ -18,7 +18,10 @@ mongoose.connect("mongodb://localhost:27017/userDB",{useNewUrlParser:true,useUni
 const userSchema = new mongoose.Schema({
     username:String,
     password:String
-  }); 
+  });
+
+const secret = "Thisisourlittlesecret.";
+userSchema.plugin(encrypt,{secret:secret,encryptedField:["password"]}); 
 
 const User = mongoose.model("User",userSchema);
 
